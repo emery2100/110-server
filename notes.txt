@@ -1,0 +1,19 @@
+1) Create a venv
+Windows py/python -m venv venv 
+Mac python3 -m venv venv
+
+2) Activate the venv
+WIN venv\Scripts\Activate
+Mac source venv/bin/Activate
+
+3) Install Flask
+Windows pip install Flask
+Mac pip install Flask
+
+4) Run App
+Windows py/python server.py - (name of file)
+Mac python3 server.py - (name of file)
+
+string -> string
+int -> int
+float -> float
