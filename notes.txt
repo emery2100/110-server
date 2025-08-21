@@ -17,3 +17,5 @@ Mac python3 server.py - (name of file)
 string -> string
 int -> int
 float -> float
+
+5) len = count
