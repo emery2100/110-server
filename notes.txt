@@ -19,3 +19,5 @@ int -> int
 float -> float
 
 5) len = count
+
+api = application programming interface
