@@ -76,11 +76,21 @@ def add_student():
     return "Student added"
 
 products = [
-    {"id": 1, "title": "Laptop", "category": "Electronics", "price": 99.99},
-    {"id": 2, "title": "Smartphone", "category": "Electronics", "price": 99.99},
-    {"id": 3, "title": "Shoes", "category": "Clothing", "price": 49.99},
-    {"id": 4, "title": "Pants", "category": "Clothing", "price": 49.99},
+    {"id": 1, "title": "Laptop", "category": "Electronics", "price": 899.99},
+    {"id": 2, "title": "Headphones", "category": "Electronics", "price": 199.99},
+    {"id": 3, "title": "Coffee Mug", "category": "Kitchen", "price": 12.50},
+    {"id": 4, "title": "Notebook", "category": "Stationary", "price": 5.99},
 ]
+
+@app.get("/products")
+def get_products():
+    return products
+
+@app.post("/products")
+def save_product():
+    data = request.json
+    products.append(data)
+    return "Product added", 201
 
 @app.get("/products/<category>")
 def get_products_by_category(category):
@@ -98,23 +108,23 @@ def get_products_by_title(title):
     return filtered_products
 
 coupons = [
-    {"id": 1, "code": "BLACKFRIDAY", "discount": 20},
-    {"id": 2, "code": "CYBERMONDAY", "discount": 15},
+    {"id": 1, "code": "save10", "discount": 0.10},
+    {"id": 2, "code": "save50", "discount": 0.50},
 ]
-
-@app.post("/SaveCoupon")
-def save_coupon():
-    data = request.json
-    coupons.append(data)
-    return "Coupon added"
-
 @app.get("/coupons")
 def get_coupons():
     return coupons
 
-@app.get("/searchcoupon/discount")
-def search_coupon(discount):
-    filtered_coupons = [c for c in coupons if c["discount"] == discount]
+@app.post("/coupons")
+def save_coupons():
+    data = request.json
+    coupons.append(data)
+    return "Coupon added"
+
+
+@app.get("/searchcoupons/<string:code>")
+def search_coupons(code):
+    filtered_coupons = [coupons for coupons in coupons if coupons["code"] == code]
     return filtered_coupons
 
 app.run(debug=True)
